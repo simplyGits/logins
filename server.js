@@ -35,7 +35,6 @@ Meteor.users.find({
 
 Meteor.methods({
 	'logins_updateLastLogin': function (token) {
-		this.unblock()
 		check(token, String)
 		const hashed = Accounts._hashLoginToken(token)
 		const login = logins.findOne({
