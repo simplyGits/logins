@@ -38,6 +38,8 @@ Logins = {
 		}).fetch()
 	},
 	kill(sessionId, callback) {
-		Meteor.call('logins_kill', sessionId, callback)
+		Meteor.call('logins_kill', sessionId, function (e, r) {
+			callback && callback(e, r)
+		})
 	},
 }
