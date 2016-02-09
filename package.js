@@ -15,6 +15,7 @@ Package.onUse(function(api) {
 	api.use([
 		'mongo',
 		'ecmascript',
+		'accounts-base',
 	])
 	api.use([
 		'reactive-var',
