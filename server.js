@@ -3,6 +3,16 @@
 const logins = new Mongo.Collection('logins')
 const platform = Npm.require('platform')
 
+const diffBy = function (a, b, key) {
+	const res = []
+	a.forEach(function (x) {
+		if (b.find((z) => x[key] === z[key]) === undefined) {
+			res.push(x)
+		}
+	})
+	return res
+}
+
 Meteor.users.find({
 	'profile.firstName': { $ne: '' },
 }, {
@@ -15,7 +25,7 @@ Meteor.users.find({
 		const oldTokens = oldDoc.services.resume.loginTokens
 		const newTokens = newDoc.services.resume.loginTokens
 
-		const addedLogins = _.difference(newTokens, oldTokens)
+		const addedLogins = diffBy(newTokens, oldTokens, 'hashedToken')
 		addedLogins.forEach((token) => {
 			logins.insert({
 				hashedToken: token.hashedToken,
@@ -24,7 +34,7 @@ Meteor.users.find({
 			})
 		})
 
-		const removedLogins = _.difference(oldTokens, newTokens)
+		const removedLogins = diffBy(oldTokens, newTokens, 'hashedToken')
 		removedLogins.forEach((token) => {
 			logins.remove({
 				hashedToken: token.hashedToken,
