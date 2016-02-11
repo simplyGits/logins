@@ -55,12 +55,17 @@ Meteor.methods({
 		}
 
 		const userAgent = this.connection.httpHeaders['user-agent']
+		const info = platform.parse(userAgent)
+		if (info.os && info.os.family.indexOf('Windows') === 0) {
+			info.os.family = 'Windows'
+		}
+
 		logins.update(login._id, {
 			$set: {
 				lastLogin: {
 					ip: this.connection.clientAddress,
 					date: new Date(),
-					...platform.parse(userAgent),
+					...info,
 				},
 			},
 		})
