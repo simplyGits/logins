@@ -1,6 +1,6 @@
 Package.describe({
 	name: 'simply:logins',
-	version: '1.0.3',
+	version: '2.0.0',
 	summary: 'simple login management',
 	git: 'https://github.com/simplyGits/logins',
 	documentation: 'README.md',
