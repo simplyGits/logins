@@ -19,21 +19,22 @@ Tracker.autorun(function () {
 	})
 })
 
-Logins = {
-	all() {
-		return logins.find().fetch()
-	},
-	current() {
-		return logins.findOne(currentSessionId.get())
-	},
-	others() {
-		return logins.find({
-			_id: { $ne: currentSessionId.get() },
-		}).fetch()
-	},
-	kill(sessionId, callback) {
-		Meteor.call('logins_kill', sessionId, function (e, r) {
-			callback && callback(e, r)
-		})
-	},
+export function all () {
+	return logins.find().fetch()
+}
+
+export function current () {
+	return logins.findOne(currentSessionId.get())
+}
+
+export function others () {
+	return logins.find({
+		_id: { $ne: currentSessionId.get() },
+	}).fetch()
+}
+
+export function kill (sessionId, callback) {
+	Meteor.call('logins_kill', sessionId, function (e, r) {
+		callback && callback(e, r)
+	})
 }

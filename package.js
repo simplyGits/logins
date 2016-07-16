@@ -11,10 +11,11 @@ Npm.depends({
 })
 
 Package.onUse(function(api) {
-	api.versionsFrom('1.2.1')
+	api.versionsFrom('1.3.2.4')
 	api.use([
 		'mongo',
 		'ecmascript',
+		'modules',
 		'accounts-base',
 	])
 	api.use([
@@ -24,8 +25,6 @@ Package.onUse(function(api) {
 	api.use([
 		'check',
 	], 'server')
-	api.addFiles('client.js', 'client')
-	api.addFiles('server.js', 'server')
-
-	api.export('Logins', 'client')
+	api.mainModule('client.js', 'client')
+	api.mainModule('server.js', 'server')
 })

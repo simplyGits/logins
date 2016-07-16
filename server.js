@@ -1,7 +1,7 @@
 'use strict'
 
-const logins = new Mongo.Collection('logins')
-const platform = Npm.require('platform')
+export const logins = new Mongo.Collection('logins')
+import platform from 'platform'
 
 const diffBy = function (a, b, key) {
 	const res = []
