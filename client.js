@@ -19,12 +19,6 @@ Tracker.autorun(function () {
 	})
 })
 
-Tracker.autorun(function () {
-	if (Meteor.userId() != null) {
-		Meteor.subscribe('logins')
-	}
-})
-
 Logins = {
 	all() {
 		return logins.find().fetch()
