@@ -7,7 +7,7 @@ Package.describe({
 })
 
 Npm.depends({
-	platform: 'https://github.com/bestiejs/platform.js/archive/3760d12934df6d13a5988268b393822ce84b67d7.tar.gz',
+	platform: 'https://github.com/bestiejs/platform.js/archive/e645a591da5a0ec7992b7af9af38be71ae6f8874.tar.gz',
 })
 
 Package.onUse(function(api) {
