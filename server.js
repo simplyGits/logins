@@ -13,9 +13,7 @@ const diffBy = function (a, b, key) {
 	return res
 }
 
-Meteor.users.find({
-	'profile.firstName': { $ne: '' },
-}, {
+Meteor.users.find({}, {
 	fields: {
 		_id: 1,
 		'services.resume.loginTokens': 1,
