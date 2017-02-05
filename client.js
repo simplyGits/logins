@@ -19,6 +19,10 @@ Tracker.autorun(function () {
 	})
 })
 
+export function subscribe () {
+	return Meteor.subscribe('logins')
+}
+
 export function all () {
 	return logins.find().fetch()
 }
