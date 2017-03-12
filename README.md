@@ -34,7 +34,7 @@ The login object:
 First subscribe to the `'logins'` subscription:
 
 ```JavaScript
-Meteor.subscribe('logins')
+logins.subscribe() // or Meteor.subscribe('logins')
 ```
 
 `logins.all() -> Login[]`: Returns all the logins of the current user.
