@@ -1,7 +1,7 @@
 'use strict'
 
 const logins = new Mongo.Collection('logins')
-const currentSessionId = new ReactiveVar()
+const currentLoginId = new ReactiveVar()
 
 Tracker.autorun(function () {
 	Meteor.connection._userIdDeps.depend()
@@ -12,7 +12,7 @@ Tracker.autorun(function () {
 				'logins_updateLastLogin',
 				token,
 				function (e, r) {
-					currentSessionId.set(r)
+					currentLoginId.set(r)
 				}
 			)
 		}
@@ -28,17 +28,17 @@ export function all () {
 }
 
 export function current () {
-	return logins.findOne(currentSessionId.get())
+	return logins.findOne(currentLoginId.get())
 }
 
 export function others () {
 	return logins.find({
-		_id: { $ne: currentSessionId.get() },
+		_id: { $ne: currentLoginId.get() },
 	}).fetch()
 }
 
-export function kill (sessionId, callback) {
-	Meteor.call('logins_kill', sessionId, function (e, r) {
+export function kill (loginId, callback) {
+	Meteor.call('logins_kill', loginId, function (e, r) {
 		callback && callback(e, r)
 	})
 }

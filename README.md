@@ -43,7 +43,7 @@ Meteor.subscribe('logins')
 
 `logins.others() -> Logins[]`: Returns all the logins of the current user except the current one.
 
-`logins.kill(sessionId: string, callback: (e))`: Kills the session with the given id, callback will be called with an optional error.
+`logins.kill(loginId: string, callback: (e))`: Kills the login with the given id, callback will be called with an optional error.
 
 ## Server
 
